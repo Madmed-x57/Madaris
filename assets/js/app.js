@@ -38,21 +38,7 @@
     districtSummaryGrid: document.getElementById('districtSummaryGrid'),
     detailModal: document.getElementById('detailModal'),
     detailModalBody: document.getElementById('detailModalBody'),
-    closeDetailModal: document.getElementById('closeDetailModal'),
-    submitModal: document.getElementById('submitModal'),
-    openSubmitBtn: document.getElementById('openSubmitBtn'),
-    bannerSubmitBtn: document.getElementById('bannerSubmitBtn'),
-    closeSubmitModal: document.getElementById('closeSubmitModal'),
-    correctionForm: document.getElementById('correctionForm'),
-    copyFeedback: document.getElementById('copyFeedback'),
-    formType: document.getElementById('formType'),
-    formSchoolName: document.getElementById('formSchoolName'),
-    formJenjang: document.getElementById('formJenjang'),
-    formKategori: document.getElementById('formKategori'),
-    formAddress: document.getElementById('formAddress'),
-    formContact: document.getElementById('formContact'),
-    formLinks: document.getElementById('formLinks'),
-    formNotes: document.getElementById('formNotes')
+    closeDetailModal: document.getElementById('closeDetailModal')
   };
 
   function loadSavedIds() {
@@ -442,7 +428,6 @@
           '<button type="button" class="btn btn-outline btn-sm" id="modalToggleSaveBtn">' +
             (isSaved ? 'Hapus dari Simpanan' : 'Simpan Sekolah Ini') +
           '</button>' +
-          '<button type="button" class="btn-link" id="modalSuggestCorrectionBtn">Ajukan Koreksi Data Sekolah Ini</button>' +
         '</div>' +
       '</div>';
 
@@ -451,37 +436,13 @@
       openDetailModal(school.id);
     });
 
-    document.getElementById('modalSuggestCorrectionBtn').addEventListener('click', function () {
-      closeModal(els.detailModal);
-      openCorrectionModal(school);
-    });
-
     els.detailModal.hidden = false;
-    document.body.style.overflow = 'hidden';
-  }
-
-  function openCorrectionModal(prefillSchool) {
-    els.copyFeedback.textContent = '';
-    if (prefillSchool) {
-      els.formType.value = 'Koreksi Data Sekolah';
-      els.formSchoolName.value = prefillSchool.name;
-      els.formJenjang.value = prefillSchool.levelLabel;
-      els.formAddress.value = prefillSchool.address;
-      els.formContact.value = prefillSchool.whatsapp || '';
-      els.formLinks.value = prefillSchool.website || prefillSchool.instagramHandle || '';
-      els.formNotes.value = '';
-    } else {
-      els.correctionForm.reset();
-    }
-    els.submitModal.hidden = false;
     document.body.style.overflow = 'hidden';
   }
 
   function closeModal(modalEl) {
     modalEl.hidden = true;
-    if (els.detailModal.hidden && els.submitModal.hidden) {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = '';
   }
 
   function resetAllFilters() {
@@ -610,44 +571,14 @@
     });
 
     els.closeDetailModal.addEventListener('click', function () { closeModal(els.detailModal); });
-    els.closeSubmitModal.addEventListener('click', function () { closeModal(els.submitModal); });
-    els.openSubmitBtn.addEventListener('click', function () { openCorrectionModal(null); });
-    els.bannerSubmitBtn.addEventListener('click', function () { openCorrectionModal(null); });
 
-    [els.detailModal, els.submitModal].forEach(function (modal) {
-      modal.addEventListener('click', function (e) {
-        if (e.target === modal) closeModal(modal);
-      });
+    els.detailModal.addEventListener('click', function (e) {
+      if (e.target === els.detailModal) closeModal(els.detailModal);
     });
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') {
-        if (!els.detailModal.hidden) closeModal(els.detailModal);
-        if (!els.submitModal.hidden) closeModal(els.submitModal);
-      }
-    });
-
-    els.correctionForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var summary = [
-        '[' + els.formType.value + ' - Madāris]',
-        'Nama Sekolah: ' + els.formSchoolName.value.trim(),
-        'Jenjang: ' + els.formJenjang.value.trim(),
-        'Kategori Siswa: ' + els.formKategori.value,
-        'Alamat & Maps: ' + els.formAddress.value.trim(),
-        'Kontak: ' + (els.formContact.value.trim() || '-'),
-        'Tautan: ' + (els.formLinks.value.trim() || '-'),
-        'Catatan: ' + (els.formNotes.value.trim() || '-')
-      ].join('\n');
-
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(summary).then(function () {
-          els.copyFeedback.textContent = 'Ringkasan berhasil disalin ke clipboard!';
-        }).catch(function () {
-          els.copyFeedback.textContent = 'Ringkasan siap. Silakan salin manual jika perlu.';
-        });
-      } else {
-        els.copyFeedback.textContent = 'Ringkasan siap dikirim ke pengelola Madāris.';
+      if (e.key === 'Escape' && !els.detailModal.hidden) {
+        closeModal(els.detailModal);
       }
     });
   }

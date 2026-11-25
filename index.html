@@ -42,12 +42,6 @@
           <span class="saved-badge" id="savedCountBadge">0</span>
         </button>
       </nav>
-
-      <div class="header-actions">
-        <button type="button" class="btn btn-accent btn-sm" id="openSubmitBtn">
-          + Ajukan / Koreksi Data
-        </button>
-      </div>
     </div>
   </header>
 
@@ -257,9 +251,6 @@
             Informasi alamat, kontak WhatsApp, jenjang, dan kategori siswa pada <strong>Madāris</strong> bersumber dari data publik sekolah. Sebelum melakukan kunjungan atau pendaftaran, orang tua disarankan mengonfirmasi kembali jadwal, ketersediaan kuota, serta pemisahan kelas ikhwan/akhwat langsung kepada admin sekolah terkait.
           </p>
         </div>
-        <button type="button" class="btn btn-midnight" id="bannerSubmitBtn">
-          Laporkan Pembaruan Data
-        </button>
       </div>
     </div>
   </section>
@@ -312,75 +303,6 @@
     <div class="modal-dialog modal-detail">
       <button type="button" class="modal-close" id="closeDetailModal" aria-label="Tutup detail sekolah">&times;</button>
       <div id="detailModalBody"></div>
-    </div>
-  </div>
-
-  <!-- Submit / Correction Modal -->
-  <div class="modal-backdrop" id="submitModal" hidden role="dialog" aria-modal="true" aria-labelledby="submitModalTitle">
-    <div class="modal-dialog modal-form">
-      <button type="button" class="modal-close" id="closeSubmitModal" aria-label="Tutup formulir">&times;</button>
-      <div class="modal-form-header">
-        <span class="modal-eyebrow">Kontribusi Direktori Madāris</span>
-        <h2 id="submitModalTitle">Ajukan Sekolah Baru atau Koreksi Data</h2>
-        <p>Isi data di bawah ini untuk menyalin ringkasan siap kirim kepada pengelola direktori Madāris.</p>
-      </div>
-      <form id="correctionForm" class="correction-form">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="formType">Jenis Pengajuan</label>
-            <select id="formType" required>
-              <option value="Koreksi Data Sekolah">Koreksi Data Sekolah</option>
-              <option value="Daftarkan Sekolah Baru">Daftarkan Sekolah Baru</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="formSchoolName">Nama Sekolah / Ma'had</label>
-            <input type="text" id="formSchoolName" placeholder="Contoh: SD Tarbiyah Sunnah Bandung" required />
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="formJenjang">Jenjang Pendidikan</label>
-            <input type="text" id="formJenjang" placeholder="TK / SD / SMP / SMA / Pesantren" required />
-          </div>
-          <div class="form-group">
-            <label for="formKategori">Kategori Siswa</label>
-            <select id="formKategori">
-              <option value="Ikhwan">Khusus Ikhwan</option>
-              <option value="Akhwat">Khusus Akhwat</option>
-              <option value="Ikhwan & Akhwat (Terpisah)">Ikhwan &amp; Akhwat (Terpisah)</option>
-              <option value="Ikhwan & Akhwat">Ikhwan &amp; Akhwat</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="formAddress">Alamat Lengkap &amp; Link Google Maps</label>
-          <textarea id="formAddress" rows="2" placeholder="Jalan, Kelurahan, Kecamatan, Kota/Kabupaten, dan link Google Maps..." required></textarea>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="formContact">WhatsApp / Kontak Sekolah</label>
-            <input type="text" id="formContact" placeholder="08xx-xxxx-xxxx" />
-          </div>
-          <div class="form-group">
-            <label for="formLinks">Website / Instagram</label>
-            <input type="text" id="formLinks" placeholder="https://... atau @akun_ig" />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="formNotes">Keterangan Tambahan / Bagian yang Dikoreksi</label>
-          <textarea id="formNotes" rows="2" placeholder="Tuliskan detail perubahan atau catatan untuk tim Madāris..."></textarea>
-        </div>
-
-        <div class="form-actions">
-          <button type="submit" class="btn btn-primary">Buat Ringkasan &amp; Salin Teks</button>
-          <span class="copy-feedback" id="copyFeedback" role="status" aria-live="polite"></span>
-        </div>
-      </form>
     </div>
   </div>
 
