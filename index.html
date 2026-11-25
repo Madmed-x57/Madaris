@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Madāris — Direktori Sekolah Islam Sunnah di Kota Bandung</title>
+  <meta
+    name="description"
+    content="Madāris adalah direktori sekolah dengan pembelajaran Islam sesuai dengan Al-Qur'an dan Sunnah pemahaman Salafush Shalih di Kota Bandung dan sekitarnya."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="icon" type="image/svg+xml" href="assets/img/madaris-mark.svg" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <!-- Top Navigation -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="#top" class="brand-lockup" aria-label="Beranda Madāris">
+        <span class="brand-emblem" aria-hidden="true">
+          <img src="assets/img/madaris-mark.svg" alt="" width="38" height="38" />
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Madāris</span>
+          <span class="brand-arabic" lang="ar" dir="rtl">مَدَارِس</span>
+        </span>
+      </a>
+
+      <nav class="header-nav" aria-label="Navigasi utama">
+        <a href="#direktori" class="nav-link">Direktori</a>
+        <a href="#ringkasan" class="nav-link">Sebaran Wilayah</a>
+        <button type="button" class="nav-link nav-saved-btn" id="toggleSavedNav" aria-pressed="false">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span>Tersimpan</span>
+          <span class="saved-badge" id="savedCountBadge">0</span>
+        </button>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="btn btn-accent btn-sm" id="openSubmitBtn">
+          + Ajukan / Koreksi Data
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-pattern" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <span class="hero-eyebrow">Direktori Pendidikan Islam · Kota Bandung &amp; Sekitarnya</span>
+        <h1 class="hero-title">
+          Madāris
+          <span class="hero-title-arabic" lang="ar" dir="rtl">مَدَارِس</span>
+        </h1>
+        <p class="hero-subtitle">
+          Sekolah dengan pembelajaran Islam sesuai dengan Al-Qur'an dan Sunnah pemahaman Salafush Shalih di Kota Bandung
+        </p>
+
+        <!-- Search Box in Hero -->
+        <form class="hero-search" id="heroSearchForm" role="search">
+          <label for="searchInput" class="sr-only">Cari nama sekolah, kecamatan, atau alamat</label>
+          <div class="search-input-wrap">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="Cari nama sekolah, kecamatan (mis. Antapani, Gedebage)..."
+              autocomplete="off"
+            />
+            <button type="button" class="clear-search-btn" id="clearSearchBtn" hidden aria-label="Hapus pencarian">
+              &times;
+            </button>
+          </div>
+          <button type="submit" class="btn btn-moss">Cari Sekolah</button>
+        </form>
+
+        <!-- Quick Level Shortcuts -->
+        <div class="quick-pills" role="group" aria-label="Pintasan jenjang pendidikan">
+          <span class="quick-pills-label">Pintasan Jenjang:</span>
+          <button type="button" class="quick-pill is-active" data-quick-jenjang="all">Semua</button>
+          <button type="button" class="quick-pill" data-quick-jenjang="TK">PAUD / TK / RA</button>
+          <button type="button" class="quick-pill" data-quick-jenjang="SD">SD / MI / Kuttab</button>
+          <button type="button" class="quick-pill" data-quick-jenjang="SMP">SMP / MTs</button>
+          <button type="button" class="quick-pill" data-quick-jenjang="SMA">SMA / MA / SMK</button>
+          <button type="button" class="quick-pill" data-quick-jenjang="Pesantren">Pesantren / Tahfidz</button>
+          <button type="button" class="quick-pill" data-quick-jenjang="PKBM">PKBM</button>
+        </div>
+      </div>
+
+      <aside class="hero-stats-card" aria-label="Ringkasan data direktori">
+        <div class="stats-card-header">
+          <span class="dot dot-moss"></span>
+          <span>Cakupan Data Terkini</span>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <strong id="statTotalSchools">0</strong>
+            <span>Sekolah / Unit</span>
+          </div>
+          <div class="stat-box">
+            <strong id="statKotaBandung">0</strong>
+            <span>Kota Bandung</span>
+          </div>
+          <div class="stat-box">
+            <strong id="statBandungRaya">0</strong>
+            <span>Kab. Bandung &amp; KBB</span>
+          </div>
+          <div class="stat-box">
+            <strong id="statDistricts">0</strong>
+            <span>Kecamatan</span>
+          </div>
+        </div>
+        <p class="stats-note">
+          Data dihimpun dari daftar kurasi Anda dan diverifikasi melalui sumber publik sekolah (alamat, tautan Maps, kontak resmi, serta kategori siswa).
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Directory Main Workspace -->
+  <main class="directory-section" id="direktori">
+    <div class="container">
+      <!-- Region Tabs -->
+      <div class="region-tabs-bar" role="tablist" aria-label="Filter wilayah">
+        <button type="button" class="region-tab is-active" data-region="all" role="tab" aria-selected="true">
+          Semua Wilayah <span class="tab-count" id="countAll">0</span>
+        </button>
+        <button type="button" class="region-tab" data-region="Kota Bandung" role="tab" aria-selected="false">
+          Kota Bandung <span class="tab-count" id="countKota">0</span>
+        </button>
+        <button type="button" class="region-tab" data-region="Kabupaten Bandung" role="tab" aria-selected="false">
+          Kabupaten Bandung <span class="tab-count" id="countKab">0</span>
+        </button>
+        <button type="button" class="region-tab" data-region="Kabupaten Bandung Barat" role="tab" aria-selected="false">
+          Kabupaten Bandung Barat <span class="tab-count" id="countKbb">0</span>
+        </button>
+      </div>
+
+      <!-- Filter Panel -->
+      <div class="filter-panel" aria-label="Filter lanjutan">
+        <div class="filter-controls">
+          <div class="filter-field">
+            <label for="filterJenjang">Jenjang Pendidikan</label>
+            <select id="filterJenjang">
+              <option value="all">Semua Jenjang</option>
+              <option value="TK">PAUD / TK / RA / Kober</option>
+              <option value="SD">SD / MI / Kuttab</option>
+              <option value="SMP">SMP / MTs</option>
+              <option value="SMA">SMA / MA / SMK</option>
+              <option value="Pesantren">Pesantren / Rumah Tahfidz</option>
+              <option value="PKBM">PKBM / Kesetaraan</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="filterKategori">Kategori Siswa</label>
+            <select id="filterKategori">
+              <option value="all">Semua Kategori</option>
+              <option value="Ikhwan">Khusus Ikhwan (Putra)</option>
+              <option value="Akhwat">Khusus Akhwat (Putri)</option>
+              <option value="Ikhwan & Akhwat">Ikhwan &amp; Akhwat</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="filterKecamatan">Kecamatan</label>
+            <select id="filterKecamatan">
+              <option value="all">Semua Kecamatan</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="filterSistem">Sistem Belajar</label>
+            <select id="filterSistem">
+              <option value="all">Semua Sistem</option>
+              <option value="Fullday">Fullday</option>
+              <option value="Boarding">Boarding / Pondok</option>
+              <option value="Reguler">Reguler / HBL / Lainnya</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="sortSelect">Urutkan</label>
+            <select id="sortSelect">
+              <option value="featured">Prioritas Kota Bandung</option>
+              <option value="name-asc">Nama Sekolah (A–Z)</option>
+              <option value="name-desc">Nama Sekolah (Z–A)</option>
+              <option value="district">Kecamatan (A–Z)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="filter-footer">
+          <div class="result-summary">
+            Menampilkan <strong id="visibleCount">0</strong> dari <span id="totalCountText">0</span> sekolah
+            <span id="activeFilterLabel" class="active-filter-label"></span>
+          </div>
+          <div class="filter-footer-actions">
+            <label class="saved-only-toggle">
+              <input type="checkbox" id="savedOnlyCheckbox" />
+              <span>Hanya yang disimpan</span>
+            </label>
+            <button type="button" class="btn-link" id="resetFiltersBtn">Reset Filter</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="schools-grid" id="schoolsGrid" aria-live="polite"></div>
+
+      <!-- Empty State -->
+      <div class="empty-state" id="emptyState" hidden>
+        <div class="empty-icon" aria-hidden="true">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </div>
+        <h3>Sekolah tidak ditemukan</h3>
+        <p>Coba ubah kata kunci pencarian, pilih wilayah lain, atau atur ulang filter yang sedang aktif.</p>
+        <button type="button" class="btn btn-primary" id="emptyResetBtn">Tampilkan Semua Sekolah</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- District & Category Summary -->
+  <section class="summary-section" id="ringkasan">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">Pemetaan Cepat</span>
+          <h2>Sebaran Kecamatan &amp; Wilayah</h2>
+        </div>
+        <p class="section-desc">
+          Klik salah satu kecamatan di bawah ini untuk langsung menyaring daftar sekolah pada wilayah tersebut.
+        </p>
+      </div>
+
+      <div class="district-chips" id="districtSummaryGrid"></div>
+
+      <div class="info-banner">
+        <div class="info-banner-text">
+          <h3>Catatan Verifikasi &amp; Pembaruan Data</h3>
+          <p>
+            Informasi alamat, kontak WhatsApp, jenjang, dan kategori siswa pada <strong>Madāris</strong> bersumber dari data publik sekolah. Sebelum melakukan kunjungan atau pendaftaran, orang tua disarankan mengonfirmasi kembali jadwal, ketersediaan kuota, serta pemisahan kelas ikhwan/akhwat langsung kepada admin sekolah terkait.
+          </p>
+        </div>
+        <button type="button" class="btn btn-midnight" id="bannerSubmitBtn">
+          Laporkan Pembaruan Data
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="brand-lockup footer-lockup">
+          <span class="brand-emblem" aria-hidden="true">
+            <img src="assets/img/madaris-mark.svg" alt="" width="34" height="34" />
+          </span>
+          <span class="brand-text">
+            <span class="brand-name">Madāris</span>
+            <span class="brand-arabic" lang="ar" dir="rtl">مَدَارِس</span>
+          </span>
+        </div>
+        <p class="footer-tagline">
+          Sekolah dengan pembelajaran Islam sesuai dengan Al-Qur'an dan Sunnah pemahaman Salafush Shalih di Kota Bandung.
+        </p>
+      </div>
+
+      <div class="footer-meta">
+        <div class="footer-col">
+          <h4>Wilayah Cakupan</h4>
+          <ul>
+            <li><button type="button" class="footer-filter-link" data-footer-region="Kota Bandung">Kota Bandung</button></li>
+            <li><button type="button" class="footer-filter-link" data-footer-region="Kabupaten Bandung">Kabupaten Bandung</button></li>
+            <li><button type="button" class="footer-filter-link" data-footer-region="Kabupaten Bandung Barat">Kabupaten Bandung Barat</button></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Tentang Direktori</h4>
+          <p class="footer-small">
+            Fokus tahap awal mencakup identitas sekolah, jenjang, kategori siswa, lokasi &amp; tautan Google Maps, serta kontak resmi sekolah.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>&copy; 2026 Madāris Bandung. Direktori Pendidikan Sunnah.</span>
+        <span>Konten bersifat informatif — silakan hubungi admin masing-masing sekolah untuk info SPMB terbaru.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- School Detail Modal -->
+  <div class="modal-backdrop" id="detailModal" hidden role="dialog" aria-modal="true" aria-labelledby="modalSchoolName">
+    <div class="modal-dialog modal-detail">
+      <button type="button" class="modal-close" id="closeDetailModal" aria-label="Tutup detail sekolah">&times;</button>
+      <div id="detailModalBody"></div>
+    </div>
+  </div>
+
+  <!-- Submit / Correction Modal -->
+  <div class="modal-backdrop" id="submitModal" hidden role="dialog" aria-modal="true" aria-labelledby="submitModalTitle">
+    <div class="modal-dialog modal-form">
+      <button type="button" class="modal-close" id="closeSubmitModal" aria-label="Tutup formulir">&times;</button>
+      <div class="modal-form-header">
+        <span class="modal-eyebrow">Kontribusi Direktori Madāris</span>
+        <h2 id="submitModalTitle">Ajukan Sekolah Baru atau Koreksi Data</h2>
+        <p>Isi data di bawah ini untuk menyalin ringkasan siap kirim kepada pengelola direktori Madāris.</p>
+      </div>
+      <form id="correctionForm" class="correction-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="formType">Jenis Pengajuan</label>
+            <select id="formType" required>
+              <option value="Koreksi Data Sekolah">Koreksi Data Sekolah</option>
+              <option value="Daftarkan Sekolah Baru">Daftarkan Sekolah Baru</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="formSchoolName">Nama Sekolah / Ma'had</label>
+            <input type="text" id="formSchoolName" placeholder="Contoh: SD Tarbiyah Sunnah Bandung" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="formJenjang">Jenjang Pendidikan</label>
+            <input type="text" id="formJenjang" placeholder="TK / SD / SMP / SMA / Pesantren" required />
+          </div>
+          <div class="form-group">
+            <label for="formKategori">Kategori Siswa</label>
+            <select id="formKategori">
+              <option value="Ikhwan">Khusus Ikhwan</option>
+              <option value="Akhwat">Khusus Akhwat</option>
+              <option value="Ikhwan & Akhwat (Terpisah)">Ikhwan &amp; Akhwat (Terpisah)</option>
+              <option value="Ikhwan & Akhwat">Ikhwan &amp; Akhwat</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="formAddress">Alamat Lengkap &amp; Link Google Maps</label>
+          <textarea id="formAddress" rows="2" placeholder="Jalan, Kelurahan, Kecamatan, Kota/Kabupaten, dan link Google Maps..." required></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="formContact">WhatsApp / Kontak Sekolah</label>
+            <input type="text" id="formContact" placeholder="08xx-xxxx-xxxx" />
+          </div>
+          <div class="form-group">
+            <label for="formLinks">Website / Instagram</label>
+            <input type="text" id="formLinks" placeholder="https://... atau @akun_ig" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="formNotes">Keterangan Tambahan / Bagian yang Dikoreksi</label>
+          <textarea id="formNotes" rows="2" placeholder="Tuliskan detail perubahan atau catatan untuk tim Madāris..."></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Buat Ringkasan &amp; Salin Teks</button>
+          <span class="copy-feedback" id="copyFeedback" role="status" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/js/schools.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
